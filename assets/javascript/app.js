@@ -28,7 +28,12 @@ $(document).ready(function () {
                 database.ref("Player1").set({
                     name: player
                 })
-                $(".p1-name").text(player);
+                database.ref("/Player1").on("value", function (snapshot) {
+                    var sv = snapshot.val();
+                    var user = $("<p>");
+                    user.text(sv.name);
+                    $(".p1-name").append(user);
+                })
             }
             else {
                 database.ref("Player2").set({

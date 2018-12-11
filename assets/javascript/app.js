@@ -32,6 +32,7 @@ $(document).ready(function () {
                     var sv = snapshot.val();
                     var user = $("<p>");
                     user.text(sv.name);
+                    console.log(sv.name);
                     $(".p1-name").append(user);
                 })
             }
@@ -43,6 +44,7 @@ $(document).ready(function () {
                     var sv = snapshot.val();
                     var user = $("<p>");
                     user.text(sv.name);
+                    console.log(sv.name);
                     $(".p2-name").append(user);
                 })
             }

@@ -39,7 +39,12 @@ $(document).ready(function () {
                 database.ref("Player2").set({
                     name: player
                 })
-                $(".p2-name").text(player);
+                database.ref("/Player2").on("value", function (snapshot) {
+                    var sv = snapshot.val();
+                    var user = $("<p>");
+                    user.text(sv.name);
+                    $(".p2-name").append(user);
+                })
             }
         })
     })

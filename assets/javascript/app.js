@@ -12,47 +12,35 @@ $(document).ready(function () {
     firebase.initializeApp(config);
 
     var database = firebase.database();
-    var chat = $("#add-chat").val();
-   
+    var player;
+    var p1snapshot;
+    var p2snapshot;
+
     //-----------user-input--------------////
-    $(".name1-submit").on("click", function () {
+    $(".player-info").html("<input type=text placeholder='enter name here' id='player-input'><input type=submit id='push-info' value='enter'>")
+
+    $("#push-info").one("click", function () {
         event.preventDefault();
-        var name = $("#username1").val();
-        var user1 = $("<p>");
-        $(".player1-input").remove();
-        database.ref("/player1").set({
-            name: name,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
+        player = $("#player-input").val();
+        database.ref().once("value", function (snapshot) {
+            if (!snapshot.exists()) {
+                database.ref("Player1").set({
+                    name: player
+                })
+                $(".p1-name").text(player);
+            }
+            else {
+                database.ref("Player2").set({
+                    name: player
+                })
+                $(".p2-name").text(player);
+            }
         })
-
-    });
-    $(".name2-submit").on("click", function () {
-        event.preventDefault();
-        var name = $("#username2").val();
-        var user2 = $("<p>");
-        $(".player2-input").remove();
-        database.ref("/player2").set({
-            name: name,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
-        })
-
-    });
-
-    database.ref("/player1").on("value", function (snapshot) {
-        var sv = snapshot.val();
-        var name = $("<p>");
-        name.text("Name: " + sv.name);
-        $(".p1-name").append(name);
     })
 
-    database.ref("/player2").on("value", function (snapshot) {
-        var sv = snapshot.val();
-        var name = $("<p>");
-        name.text("Name: " + sv.name);
-        $(".p2-name").append(name);
-    })
 
-//------------chat submit--------------------//
+
+    //------------chat submit--------------------//
     $(".submit").on("click", function () {
         event.preventDefault();
         var chat = $("#add-chat").val();

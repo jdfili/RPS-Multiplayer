@@ -27,33 +27,27 @@
             <h1>Rock, Paper, Scissors</h1>
         </div>
 
-        <div class="row">
-
-            <div class="card text-center player-1 col-md-6">
-                <form class="player1-input">
-                    <input type="name" class="form-control" id="username1" placeholder="Enter Username...">
-                    <button type="submit" class="btn btn-primary name1-submit">Submit</button>
-                </form>
-                <h2 class="card-title">Player-1</h2>
-                <h3 class="card-subtitle p1-name"></h3>
-                <h3 class="card-subtitle p1-stats"></h3>
-                <p class="card-text option rock">Rock</p>
-                <p class="card-text option paper">Paper</p>
-                <p class="card-text option scissors">Scissors</p>
+        <div class="game">
+            <div class="player-info text-center m-4"></div>
+            <div class="row">
+                <div class="card text-center player-1 col-md-6">
+                    <h2 class="card-title">Player 1</h2> <br>
+                    <h3 class="card-subtitle p1-name"></h3>
+                    <h3 class="card-subtitle p1-stats"></h3>
+                    <p class="card-text option rock">Rock</p>
+                    <p class="card-text option paper">Paper</p>
+                    <p class="card-text option scissors">Scissors</p>
+                </div>
+                <div class="card text-center player-2 col-md-6">
+                    <h2 class="card-title">Player 2</h2> <br>
+                    <h3 class="card-subtitle p2-name"></h3>
+                    <h3 class="card-subtitle p2-stats"></h3>
+                    <p class="card-text option rock">Rock</p>
+                    <p class="card-text option paper">Paper</p>
+                    <p class="card-text option scissors">Scissors</p>
+                </div>
             </div>
 
-            <div class="card text-center player-2 col-md-6">
-                <form class="player2-input">
-                    <input type="name" class="form-control" id="username2" placeholder="Enter Username...">
-                    <button type="submit" class="btn btn-primary name2-submit">Submit</button>
-                </form>
-                <h2 class="card-title">Player-2</h2>
-                <h3 class="card-subtitle p2-name"></h3>
-                <h3 class="card-subtitle p2-stats"></h3>
-                <p class="card-text option rock">Rock</p>
-                <p class="card-text option paper">Paper</p>
-                <p class="card-text option scissors">Scissors</p>
-            </div>
         </div>
 
 
@@ -63,7 +57,7 @@
             <form>
                 <div class="form-group">
                     <label for="add-topic">Chat!</label>
-                    <input type="email" class="form-control" id="add-chat" aria-describedby="emailHelp" placeholder="...">
+                    <input type="text" class="form-control" id="add-chat" aria-describedby="emailHelp" placeholder="...">
                 </div>
                 <button type="submit" class="btn btn-primary submit">Submit</button>
             </form>

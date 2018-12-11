@@ -20,9 +20,10 @@ $(document).ready(function () {
     $(".player-info").html("<input type=text placeholder='enter name here' id='player-input'><input type=submit id='push-info' value='enter'>")
 
     $("#push-info").one("click", function () {
-        event.preventDefault();
-        player = $("#player-input").val();
+
         database.ref().once("value", function (snapshot) {
+            event.preventDefault();
+            player = $("#player-input").val();
             if (!snapshot.exists()) {
                 database.ref("Player1").set({
                     name: player

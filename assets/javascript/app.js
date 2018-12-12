@@ -47,7 +47,7 @@ $(document).ready(function () {
         var sv = snapshot.val();
         var user = $("<p>");
         user.text(sv.name);
-        $(".p2-name").append(user);
+        $(".p1-name").append(user);
     })
 
 

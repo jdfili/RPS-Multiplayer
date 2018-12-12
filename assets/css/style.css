@@ -1,3 +1,10 @@
 .option:hover {
     cursor: pointer;
 }
+
+.head {
+    border: 1px black solid;
+}
+.chat {
+    border: 1px black solid;
+}

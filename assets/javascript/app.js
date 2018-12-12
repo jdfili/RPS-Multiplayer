@@ -21,8 +21,6 @@ $(document).ready(function () {
 
     $("#push-info").one("click", function () {
 
-        console.log(database.ref("/Player1"))
-
         database.ref().once("value", function (snapshot) {
             event.preventDefault();
             player = $("#player-input").val();
@@ -30,50 +28,31 @@ $(document).ready(function () {
                 database.ref("Player1").set({
                     name: player
                 })
-                // database.ref("/Player1").on("value", function (snapshot) {
-                //     var sv = snapshot.val();
-                //     var user = $("<p>");
-                //     user.text(sv.name);
-                //     console.log(sv.name);
-                //     $(".p1-name").append(user);
-                // })
             }
             else {
                 database.ref("Player2").set({
                     name: player
                 })
-                // database.ref("/Player2").on("value", function (snapshot) {
-                //     var sv = snapshot.val();
-                //     var user = $("<p>");
-                //     user.text(sv.name);
-                //     console.log(sv.name);
-                //     $(".p2-name").append(user);
-                // })
-                
             }
-        
-            
         })
 
     })
-    database.ref("Player1").on("value", function(snapshot){
+    database.ref("Player1").on("value", function (snapshot) {
         var sv = snapshot.val();
         var user = $("<p>");
         user.text(sv.name);
-        console.log(sv.name);
         $(".p1-name").append(user);
     })
-    database.ref("Player2").on("value", function(snapshot){
+    database.ref("Player2").on("value", function (snapshot) {
         var sv = snapshot.val();
         var user = $("<p>");
         user.text(sv.name);
-        console.log(sv.name);
         $(".p2-name").append(user);
     })
 
 
 
-    //------------chat submit--------------------//
+    //------------chat -----------------//
     $(".submit").on("click", function () {
         event.preventDefault();
         var chat = $("#add-chat").val();
@@ -85,39 +64,61 @@ $(document).ready(function () {
         })
     })
 
-    ////-----chat////
     database.ref("/chat").orderByChild("dateAdded").on("child_added", function (snapshot) {
         var sv = snapshot.val();
         var hist = $("<div>");
         hist.text(sv.chat);
         $(".chat").append(hist);
     })
-
+    ///--------game functionality-----------//
     $(".rock").one("click", function () {
-        console.log("hello");
-        //-------chat functionality-------//
-        var alert = $("<div>");
-        alert.text("You chose rock.");
-        $(".chat").append(alert);
-        //---------databasestuff-------------//
-        $(".rock").addClass("isClicked");
-        checker();
+        database.ref("Player1/option").once("value", function (snapshot) {
+            var rock = $("<div>");
+            rock.val("rock");
+            if (!snapshot.exists()) {
+                database.ref("Player1").set({
+                    option: rock
+                })
+            }
+            else {
+                database.ref("Player2").set({
+                    option: rock
+                })
+            }
+        });
     });
     $(".paper").one("click", function () {
-        //-------chat functionality-------//
-        var alert = $("<div>");
-        alert.text("You chose paper.");
-        $(".chat").append(alert);
-        //---------databasestuff-------------//
+        database.ref("Player1/option").once("value", function (snapshot) {
+            var paper = $("<div>");
+            paper.val("paper");
+            if (!snapshot.exists()) {
+                database.ref("Player1").set({
+                    option: paper
+                })
+            }
+            else {
+                database.ref("Player2").set({
+                    option: paper
+                })
+            }
+        });
     })
     $(".scissors").one("click", function () {
-        //-------chat functionality-------//
-        var alert = $("<div>");
-        alert.text("You chose scissors.");
-        $(".chat").append(alert);
-        //---------databasestuff-------------//
-        $(".scissors").addClass("isClicked");
-        checker()
+        database.ref("Player1/option").once("value", function (snapshot) {
+            var scissors = $("<div>");
+            scissors.val("scissors");
+            if (!snapshot.exists()) {
+                database.ref("Player1").set({
+                    option: scissors
+                })
+            }
+            else {
+                database.ref("Player2").set({
+                    option: scissors
+                })
+                console.log(snapshot.val())
+            }
+        });
     })
     function checker() {
         if ($(".rock").hasClass("isClicked") && $(".scissors").hasClass("isClicked")) {
